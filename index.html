@@ -1,0 +1,347 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Javascript Array Extensions by powerumc</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Javascript Array Extensions</h1>
+        <p class="header">Javascript, NodeJS, Web Browser, Web Application, HTML</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/powerumc/array-extensions/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/powerumc/array-extensions/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/powerumc/array-extensions">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/powerumc">powerumc</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="javascript-array-extensions" class="anchor" href="#javascript-array-extensions"><span class="octicon octicon-link"></span></a>Javascript Array Extensions</h1>
+
+<ul>
+<li>It is an array extensions that can be used <strong>javascript</strong> and <strong>node.js</strong>.</li>
+<li>It is just likes C# extension methods or lambda expression can be used.</li>
+</ul><h1>
+<a name="support-methods" class="anchor" href="#support-methods"><span class="octicon octicon-link"></span></a>Support methods</h1>
+
+<ul>
+<li>any</li>
+<li>first</li>
+<li>firstOrDefault</li>
+<li>firstOrNew</li>
+<li>last</li>
+<li>lastOrDefault</li>
+<li>lastOrNew</li>
+<li>where</li>
+<li>select</li>
+<li>foreach</li>
+<li>orderBy</li>
+<li>take</li>
+<li>skip</li>
+<li>sum</li>
+<li>average</li>
+<li>range and Array.range</li>
+</ul><h2>
+<a name="basics" class="anchor" href="#basics"><span class="octicon octicon-link"></span></a><strong>Basics</strong>
+</h2>
+
+<p><strong>any( predicate )</strong></p>
+
+<div class="highlight"><pre><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">].</span><span class="nx">any</span><span class="p">();</span>                                  <span class="c1">// True</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">].</span><span class="nx">any</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">i</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">;</span> <span class="p">});</span>     <span class="c1">// True</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">].</span><span class="nx">any</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">i</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">;</span> <span class="p">});</span>     <span class="c1">// False</span>
+</pre></div>
+
+<p><strong>first( predicate )</strong></p>
+
+<div class="highlight"><pre><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">first</span><span class="p">();</span>    <span class="c1">// 1</span>
+
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">].</span><span class="nx">firstOrNew</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">i</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">;</span> <span class="p">});</span>      <span class="c1">// 6</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">].</span><span class="nx">firstOrNew</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">i</span> <span class="o">&gt;</span> <span class="mi">6</span><span class="p">;</span> <span class="p">});</span>      <span class="c1">// []    is new Array()</span>
+
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">].</span><span class="nx">firstOrDefault</span><span class="p">();</span>                               <span class="c1">// 3</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">].</span><span class="nx">firstOrDefault</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">i</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">;</span> <span class="p">});</span>  <span class="c1">// 6</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">].</span><span class="nx">firstOrDefault</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">i</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">;</span> <span class="p">});</span>  <span class="c1">// Null</span>
+</pre></div>
+
+<p><strong>last( predicate )</strong></p>
+
+<div class="highlight"><pre><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">].</span><span class="nx">last</span><span class="p">();</span>                                 <span class="c1">// 9</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">].</span><span class="nx">last</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">i</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">;</span> <span class="p">});</span>  <span class="c1">// throw null references</span>
+
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">].</span><span class="nx">lastOrDefault</span><span class="p">();</span>                                <span class="c1">// 9</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">].</span><span class="nx">lastOrDefault</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">9</span> <span class="p">});</span>    <span class="c1">// 6</span>
+
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">].</span><span class="nx">lastOrNew</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">5</span> <span class="p">});</span>    <span class="c1">// 3</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">].</span><span class="nx">lastOrNew</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="p">});</span>   <span class="c1">// []    is new Array()</span>
+</pre></div>
+
+<h2>
+<a name="selector-and-condition" class="anchor" href="#selector-and-condition"><span class="octicon octicon-link"></span></a><strong>Selector and Condition</strong>
+</h2>
+
+<p><strong>select( selector )</strong></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span> <span class="p">{</span> <span class="s2">"key"</span><span class="o">:</span> <span class="s2">"powerumc"</span><span class="p">,</span>    <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"http://blog.powerumc.kr"</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="s2">"key"</span><span class="o">:</span> <span class="s2">"devth"</span><span class="p">,</span>       <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"http://devwith.com"</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="s2">"key"</span><span class="o">:</span> <span class="s2">"domain"</span><span class="p">,</span>      <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"http://powerumc.kr"</span> <span class="p">}];</span>
+
+<span class="kd">var</span> <span class="nx">selected</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="nx">o</span><span class="p">.</span><span class="nx">key</span><span class="p">,</span> <span class="nx">website</span><span class="o">:</span> <span class="nx">o</span><span class="p">.</span><span class="nx">value</span> <span class="p">};</span>
+<span class="p">});</span>
+
+<span class="c1">// results var selected</span>
+<span class="nx">select</span> <span class="nx">name</span><span class="o">=</span><span class="nx">powerumc</span><span class="p">,</span>   <span class="nx">website</span><span class="o">=</span><span class="nx">http</span><span class="o">:</span><span class="c1">//blog.powerumc.kr</span>
+<span class="nx">select</span> <span class="nx">name</span><span class="o">=</span><span class="nx">devth</span><span class="p">,</span>      <span class="nx">website</span><span class="o">=</span><span class="nx">http</span><span class="o">:</span><span class="c1">//devwith.com</span>
+<span class="nx">select</span> <span class="nx">name</span><span class="o">=</span><span class="nx">domain</span><span class="p">,</span>     <span class="nx">website</span><span class="o">=</span><span class="nx">http</span><span class="o">:</span><span class="c1">//powerumc.kr</span>
+</pre></div>
+
+<p><strong>where( selector )</strong></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span> <span class="p">{</span> <span class="s2">"key"</span><span class="o">:</span> <span class="s2">"powerumc"</span><span class="p">,</span>    <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"http://blog.powerumc.kr"</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="s2">"key"</span><span class="o">:</span> <span class="s2">"devth"</span><span class="p">,</span>       <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"http://devwith.com"</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="s2">"key"</span><span class="o">:</span> <span class="s2">"domain"</span><span class="p">,</span>      <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"http://powerumc.kr"</span> <span class="p">}];</span>
+
+<span class="kd">var</span> <span class="nx">selected</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">o</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s2">".kr"</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="p">});</span>
+
+<span class="c1">// results var selected</span>
+<span class="nx">where</span> <span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">'.kr'</span><span class="p">)</span><span class="o">=</span><span class="nx">http</span><span class="o">:</span><span class="c1">//blog.powerumc.kr</span>
+<span class="nx">where</span> <span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">'.kr'</span><span class="p">)</span><span class="o">=</span><span class="nx">http</span><span class="o">:</span><span class="c1">//powerumc.kr</span>
+</pre></div>
+
+<p><strong>take( number )</strong></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">take</span> <span class="o">=</span>  <span class="nx">arr</span><span class="p">.</span><span class="nx">take</span><span class="p">(</span><span class="mi">5</span><span class="p">).</span><span class="nx">toString</span><span class="p">();</span>
+
+<span class="c1">// results var take</span>
+<span class="nx">take</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span>
+</pre></div>
+
+<p><strong>skip( number )</strong></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">skip</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">skip</span><span class="p">(</span><span class="mi">5</span><span class="p">).</span><span class="nx">toString</span><span class="p">();</span>
+
+<span class="c1">// results var skip</span>
+<span class="nx">skip</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span>
+</pre></div>
+
+<p><strong>take and skip</strong></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">arr</span>         <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">20</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">take</span>        <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">count</span>       <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">page</span>        <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">pagingList</span>  <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">skip</span><span class="p">(</span> <span class="nx">page</span> <span class="o">*</span> <span class="nx">count</span> <span class="p">).</span><span class="nx">take</span><span class="p">(</span><span class="nx">take</span><span class="p">);</span>
+
+<span class="c1">// results</span>
+<span class="nx">take</span> <span class="nx">and</span> <span class="nx">skip</span> <span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span>
+</pre></div>
+
+<h2>
+<a name="loop" class="anchor" href="#loop"><span class="octicon octicon-link"></span></a><strong>Loop</strong>
+</h2>
+
+<p><strong>foreach ( i, object, args )</strong></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span> <span class="p">{</span> <span class="s2">"key"</span><span class="o">:</span> <span class="s2">"powerumc"</span><span class="p">,</span>    <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"http://blog.powerumc.kr"</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="s2">"key"</span><span class="o">:</span> <span class="s2">"devth"</span><span class="p">,</span>       <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"http://devwith.com"</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="s2">"key"</span><span class="o">:</span> <span class="s2">"domain"</span><span class="p">,</span>      <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"http://powerumc.kr"</span> <span class="p">}];</span>
+
+<span class="nx">arr</span><span class="p">.</span><span class="nx">foreach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">"foreach o="</span> <span class="o">+</span> <span class="nx">o</span><span class="p">.</span><span class="nx">key</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// results</span>
+<span class="nx">foreach</span> <span class="nx">o</span><span class="o">=</span><span class="nx">powerumc</span>
+<span class="nx">foreach</span> <span class="nx">o</span><span class="o">=</span><span class="nx">devth</span>
+<span class="nx">foreach</span> <span class="nx">o</span><span class="o">=</span><span class="nx">domain</span>
+
+
+<span class="nx">arr</span><span class="p">.</span><span class="nx">foreach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">"foreach i="</span> <span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s2">" key="</span> <span class="o">+</span> <span class="nx">o</span><span class="p">.</span><span class="nx">key</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// results</span>
+<span class="nx">foreach</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span> <span class="nx">key</span><span class="o">=</span><span class="nx">powerumc</span>
+<span class="nx">foreach</span> <span class="nx">i</span><span class="o">=</span><span class="mi">1</span> <span class="nx">key</span><span class="o">=</span><span class="nx">devth</span>
+<span class="nx">foreach</span> <span class="nx">i</span><span class="o">=</span><span class="mi">2</span> <span class="nx">key</span><span class="o">=</span><span class="nx">domain</span>
+
+
+<span class="nx">arr</span><span class="p">.</span><span class="nx">foreach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">o</span><span class="p">,</span> <span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">"foreach i="</span> <span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s2">" key="</span> <span class="o">+</span> <span class="nx">o</span><span class="p">.</span><span class="nx">key</span> <span class="o">+</span> <span class="s2">"  arg="</span> <span class="o">+</span> <span class="nx">arg</span><span class="p">);</span>
+<span class="p">},</span> <span class="s2">"this is arguments"</span><span class="p">);</span>
+
+<span class="c1">// results</span>
+<span class="nx">foreach</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span> <span class="nx">key</span><span class="o">=</span><span class="nx">powerumc</span><span class="p">,</span>   <span class="nx">arg</span><span class="o">=</span><span class="k">this</span> <span class="nx">is</span> <span class="nx">arguments</span>
+<span class="nx">foreach</span> <span class="nx">i</span><span class="o">=</span><span class="mi">1</span> <span class="nx">key</span><span class="o">=</span><span class="nx">devth</span><span class="p">,</span>      <span class="nx">arg</span><span class="o">=</span><span class="k">this</span> <span class="nx">is</span> <span class="nx">arguments</span>
+<span class="nx">foreach</span> <span class="nx">i</span><span class="o">=</span><span class="mi">2</span> <span class="nx">key</span><span class="o">=</span><span class="nx">domain</span><span class="p">,</span>     <span class="nx">arg</span><span class="o">=</span><span class="k">this</span> <span class="nx">is</span> <span class="nx">arguments</span>
+</pre></div>
+
+<p><strong>foreach ( i, object, args )</strong> <em>with foreach.continue</em></p>
+
+<div class="highlight"><pre><span class="nx">arr</span><span class="p">.</span><span class="nx">foreach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span> <span class="nx">i</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">foreach</span><span class="p">.</span><span class="k">continue</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">"foreach continue i = "</span> <span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s2">",   key = "</span> <span class="o">+</span> <span class="nx">o</span><span class="p">.</span><span class="nx">key</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// results</span>
+<span class="nx">foreach</span> <span class="k">continue</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>   <span class="nx">key</span> <span class="o">=</span> <span class="nx">powerumc</span>
+<span class="nx">foreach</span> <span class="k">continue</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>   <span class="nx">key</span> <span class="o">=</span> <span class="nx">devth</span>
+</pre></div>
+
+<p><strong>foreach ( i, object, args )</strong> with <em>foreach.break</em></p>
+
+<pre><code>arr.foreach(function(i, o) {
+    if( i == 1 ) {
+        return foreach.break;
+    }
+
+    console.info("foreach break i = " + i + "   key = " + o.key);
+});
+
+// results
+foreach break i = 0   key = powerumc
+</code></pre>
+
+<h2>
+<a name="sort" class="anchor" href="#sort"><span class="octicon octicon-link"></span></a>Sort</h2>
+
+<p><strong>orderBy( comparer )</strong></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">43</span> <span class="p">,</span><span class="mi">81</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span> <span class="p">];</span>
+<span class="nx">arr</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">orderBy</span><span class="p">();</span>
+
+<span class="c1">// results</span>
+<span class="nx">orderBy</span> <span class="p">(</span><span class="k">default</span><span class="p">)</span> <span class="mi">4</span>
+<span class="nx">orderBy</span> <span class="p">(</span><span class="k">default</span><span class="p">)</span> <span class="mi">8</span>
+<span class="nx">orderBy</span> <span class="p">(</span><span class="k">default</span><span class="p">)</span> <span class="mi">23</span>
+<span class="nx">orderBy</span> <span class="p">(</span><span class="k">default</span><span class="p">)</span> <span class="mi">32</span>
+<span class="nx">orderBy</span> <span class="p">(</span><span class="k">default</span><span class="p">)</span> <span class="mi">43</span>
+<span class="nx">orderBy</span> <span class="p">(</span><span class="k">default</span><span class="p">)</span> <span class="mi">64</span>
+<span class="nx">orderBy</span> <span class="p">(</span><span class="k">default</span><span class="p">)</span> <span class="mi">81</span>
+</pre></div>
+
+<p><strong>orderBy( comparer )</strong> with <em>comparer.ascending or comparer.asc</em></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">43</span> <span class="p">,</span><span class="mi">81</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span> <span class="p">];</span>
+<span class="nx">arr</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">orderBy</span><span class="p">(</span><span class="nx">comparer</span><span class="p">.</span><span class="nx">ascending</span><span class="p">);</span>
+
+<span class="c1">// results</span>
+<span class="nx">orderBy</span> <span class="nx">comparer</span><span class="p">.</span><span class="nx">ascending</span> <span class="mi">4</span>
+<span class="nx">orderBy</span> <span class="nx">comparer</span><span class="p">.</span><span class="nx">ascending</span> <span class="mi">8</span>
+<span class="nx">orderBy</span> <span class="nx">comparer</span><span class="p">.</span><span class="nx">ascending</span> <span class="mi">23</span>
+<span class="nx">orderBy</span> <span class="nx">comparer</span><span class="p">.</span><span class="nx">ascending</span> <span class="mi">32</span>
+<span class="nx">orderBy</span> <span class="nx">comparer</span><span class="p">.</span><span class="nx">ascending</span> <span class="mi">43</span>
+<span class="nx">orderBy</span> <span class="nx">comparer</span><span class="p">.</span><span class="nx">ascending</span> <span class="mi">64</span>
+<span class="nx">orderBy</span> <span class="nx">comparer</span><span class="p">.</span><span class="nx">ascending</span> <span class="mi">81</span>
+</pre></div>
+
+<p><strong>orderBy( comparer )</strong> with <em>comparer.descending or cmoparer.desc</em></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">43</span> <span class="p">,</span><span class="mi">81</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span> <span class="p">];</span>
+<span class="nx">arr</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">orderBy</span><span class="p">(</span><span class="nx">comparer</span><span class="p">.</span><span class="nx">descending</span><span class="p">);</span>
+
+<span class="c1">// results</span>
+<span class="nx">orderBy</span> <span class="nx">comparer</span><span class="p">.</span><span class="nx">descending</span> <span class="mi">81</span>
+<span class="nx">orderBy</span> <span class="nx">comparer</span><span class="p">.</span><span class="nx">descending</span> <span class="mi">64</span>
+<span class="nx">orderBy</span> <span class="nx">comparer</span><span class="p">.</span><span class="nx">descending</span> <span class="mi">43</span>
+<span class="nx">orderBy</span> <span class="nx">comparer</span><span class="p">.</span><span class="nx">descending</span> <span class="mi">32</span>
+<span class="nx">orderBy</span> <span class="nx">comparer</span><span class="p">.</span><span class="nx">descending</span> <span class="mi">23</span>
+<span class="nx">orderBy</span> <span class="nx">comparer</span><span class="p">.</span><span class="nx">descending</span> <span class="mi">8</span>
+<span class="nx">orderBy</span> <span class="nx">comparer</span><span class="p">.</span><span class="nx">descending</span> <span class="mi">4</span>
+</pre></div>
+
+<h2>
+<a name="numbers" class="anchor" href="#numbers"><span class="octicon octicon-link"></span></a>Numbers</h2>
+
+<p><strong>sum( selector )</strong></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">sum</span><span class="p">();</span>                                  <span class="c1">// 55</span>
+
+<span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s2">"4"</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span> <span class="s2">"9"</span><span class="p">,</span> <span class="s2">"10.5"</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">sum</span><span class="p">();</span>                                  <span class="c1">// 55.5</span>
+
+<span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span> <span class="mf">10.5</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">sum</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">i</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span> <span class="p">});</span>     <span class="c1">// 27.75</span>
+</pre></div>
+
+<p><strong>average( selector )</strong></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">avg</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">average</span><span class="p">();</span>                               <span class="c1">// 5.5</span>
+
+<span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s2">"4"</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span> <span class="s2">"9"</span><span class="p">,</span> <span class="s2">"10.5"</span><span class="p">];</span>             <span class="c1">// 5.55</span>
+<span class="kd">var</span> <span class="nx">avg</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">average</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span> <span class="mf">10.5</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">avg</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">average</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">i</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span> <span class="p">});</span>   <span class="c1">// 11.1</span>
+<span class="p">}</span>
+</pre></div>
+
+<p><strong>range(start, max, step )</strong> and <strong>Array.range( start, max, step )</strong> <em>likes range method of python language.</em></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>                   <span class="c1">// 0,1,2,3,4,5,6,7,8,9  ** arr passed reference type **</span>
+
+<span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="p">[].</span><span class="nx">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>         <span class="c1">// 0,1,2,3,4,5,6,7,8,9</span>
+
+<span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>          <span class="c1">// 0,1,2,3,4,5,6,7,8,9</span>
+<span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>      <span class="c1">// 10,11,12,13,14,15,16,17,18,19</span>
+<span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>    <span class="c1">// 0,2,4,6,8</span>
+
+</pre></div>
+
+<h1>
+<a name="complex-examples" class="anchor" href="#complex-examples"><span class="octicon octicon-link"></span></a>Complex Examples</h1>
+
+<h2>
+<a name="example-1" class="anchor" href="#example-1"><span class="octicon octicon-link"></span></a>Example 1</h2>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">).</span><span class="nx">sum</span><span class="p">();</span>         <span class="c1">// sum = 55</span>
+</pre></div>
+
+<h2>
+<a name="example-2" class="anchor" href="#example-2"><span class="octicon octicon-link"></span></a>Example 2</h2>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+               <span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">{</span> <span class="nx">number</span><span class="o">:</span><span class="nx">i</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span><span class="s2">"POWERUMC "</span> <span class="o">+</span> <span class="nx">i</span> <span class="p">}</span> <span class="p">})</span>
+               <span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">o</span><span class="p">.</span><span class="nx">number</span> <span class="o">&gt;=</span> <span class="mi">5</span> <span class="p">})</span>
+               <span class="p">.</span><span class="nx">take</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="c1">// results var arr</span>
+<span class="nx">POWERUMC</span> <span class="mi">5</span>
+<span class="nx">POWERUMC</span> <span class="mi">6</span>
+<span class="nx">POWERUMC</span> <span class="mi">7</span>
+</pre></div>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
