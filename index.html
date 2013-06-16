@@ -56,6 +56,8 @@
 <li>sum</li>
 <li>average</li>
 <li>range and Array.range</li>
+<li>union</li>
+<li>clone</li>
 </ul><h2>
 <a name="basics" class="anchor" href="#basics"><span class="octicon octicon-link"></span></a><strong>Basics</strong>
 </h2>
@@ -198,7 +200,11 @@
 
 <p><strong>foreach ( i, object, args )</strong> <em>with foreach.continue</em></p>
 
-<div class="highlight"><pre><span class="nx">arr</span><span class="p">.</span><span class="nx">foreach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span> <span class="p">{</span> <span class="s2">"key"</span><span class="o">:</span> <span class="s2">"powerumc"</span><span class="p">,</span>    <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"http://blog.powerumc.kr"</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="s2">"key"</span><span class="o">:</span> <span class="s2">"devth"</span><span class="p">,</span>       <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"http://devwith.com"</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="s2">"key"</span><span class="o">:</span> <span class="s2">"domain"</span><span class="p">,</span>      <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"http://powerumc.kr"</span> <span class="p">}];</span>
+
+<span class="nx">arr</span><span class="p">.</span><span class="nx">foreach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span> <span class="nx">i</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">foreach</span><span class="p">.</span><span class="k">continue</span><span class="p">;</span>
     <span class="p">}</span>
@@ -213,17 +219,21 @@
 
 <p><strong>foreach ( i, object, args )</strong> with <em>foreach.break</em></p>
 
-<pre><code>arr.foreach(function(i, o) {
-    if( i == 1 ) {
-        return foreach.break;
-    }
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span> <span class="p">{</span> <span class="s2">"key"</span><span class="o">:</span> <span class="s2">"powerumc"</span><span class="p">,</span>    <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"http://blog.powerumc.kr"</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="s2">"key"</span><span class="o">:</span> <span class="s2">"devth"</span><span class="p">,</span>       <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"http://devwith.com"</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="s2">"key"</span><span class="o">:</span> <span class="s2">"domain"</span><span class="p">,</span>      <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"http://powerumc.kr"</span> <span class="p">}];</span>
 
-    console.info("foreach break i = " + i + "   key = " + o.key);
-});
+<span class="nx">arr</span><span class="p">.</span><span class="nx">foreach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span> <span class="nx">i</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">foreach</span><span class="p">.</span><span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
 
-// results
-foreach break i = 0   key = powerumc
-</code></pre>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">"foreach break i = "</span> <span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s2">"   key = "</span> <span class="o">+</span> <span class="nx">o</span><span class="p">.</span><span class="nx">key</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// results</span>
+<span class="nx">foreach</span> <span class="k">break</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span>   <span class="nx">key</span> <span class="o">=</span> <span class="nx">powerumc</span>
+</pre></div>
 
 <h2>
 <a name="sort" class="anchor" href="#sort"><span class="octicon octicon-link"></span></a>Sort</h2>
@@ -314,6 +324,78 @@ foreach break i = 0   key = powerumc
 
 </pre></div>
 
+<h2>
+<a name="objects-and-array" class="anchor" href="#objects-and-array"><span class="octicon octicon-link"></span></a>Objects and Array</h2>
+
+<p><strong>Object.clone( first, second )</strong></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>  <span class="s2">"name"</span>      <span class="o">:</span> <span class="p">{</span> <span class="nx">first</span><span class="o">:</span><span class="s2">"Junil"</span><span class="p">,</span> <span class="nx">last</span><span class="o">:</span><span class="s2">"Um"</span> <span class="p">},</span>
+                <span class="s2">"address"</span>   <span class="o">:</span> <span class="p">{</span> <span class="nx">country</span><span class="o">:</span><span class="s2">"South Korea"</span><span class="p">,</span> <span class="nx">city</span><span class="o">:</span><span class="s2">"Seoul"</span> <span class="p">},</span>
+                <span class="s2">"email"</span>     <span class="o">:</span> <span class="s2">"powerumc at gmail"</span> <span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">clone</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">clone</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span>
+
+<span class="c1">// results var clone</span>
+<span class="p">{</span>  <span class="s2">"name"</span>      <span class="o">:</span> <span class="p">{</span> <span class="nx">first</span><span class="o">:</span><span class="s2">"Junil"</span><span class="p">,</span> <span class="nx">last</span><span class="o">:</span><span class="s2">"Um"</span> <span class="p">},</span>
+   <span class="s2">"address"</span>   <span class="o">:</span> <span class="p">{</span> <span class="nx">country</span><span class="o">:</span><span class="s2">"South Korea"</span><span class="p">,</span> <span class="nx">city</span><span class="o">:</span><span class="s2">"Seoul"</span> <span class="p">},</span>
+   <span class="s2">"email"</span>     <span class="o">:</span> <span class="s2">"powerumc at gmail"</span> <span class="p">}</span>
+</pre></div>
+
+<p><strong>Array.clone( first, second )</strong></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">arrNum</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">clone</span>  <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">clone</span><span class="p">(</span><span class="nx">arrNum</span><span class="p">);</span>
+
+<span class="c1">// results var clone</span>
+<span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span>
+</pre></div>
+
+<p><strong>union( second )</strong></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">first</span>    <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">second</span>   <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">union</span>    <span class="o">=</span> <span class="nx">first</span><span class="p">.</span><span class="nx">union</span><span class="p">(</span><span class="nx">second</span><span class="p">);</span>
+
+<span class="c1">// results var union</span>
+<span class="nx">array</span><span class="p">.</span><span class="nx">union</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span>
+</pre></div>
+
+<p><strong>Array.union( first, second )</strong></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">first</span>   <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]];</span>
+<span class="kd">var</span> <span class="nx">second</span>  <span class="o">=</span> <span class="p">[[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">union</span>    <span class="o">=</span> <span class="nx">first</span><span class="p">.</span><span class="nx">union</span><span class="p">(</span><span class="nx">second</span><span class="p">);</span>
+
+<span class="c1">// results var union</span>
+<span class="nx">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nx">array</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="nx">array</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="nx">array</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
+<span class="nx">array</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">9</span><span class="p">]</span>
+<span class="nx">array</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+
+<p><strong>Object.union( first, second )</strong></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">person1</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"name"</span>      <span class="o">:</span> <span class="p">{</span> <span class="nx">first</span><span class="o">:</span><span class="s2">"Junil"</span><span class="p">,</span> <span class="nx">last</span><span class="o">:</span><span class="s2">"Um"</span> <span class="p">},</span>
+                <span class="s2">"address"</span>   <span class="o">:</span> <span class="p">{</span> <span class="nx">country</span><span class="o">:</span><span class="s2">"South Korea"</span><span class="p">,</span> <span class="nx">city</span><span class="o">:</span><span class="s2">"Seoul"</span> <span class="p">},</span>
+                <span class="s2">"email"</span>     <span class="o">:</span> <span class="s2">"powerumc at gmail"</span> <span class="p">};</span>
+<span class="kd">var</span> <span class="nx">person2</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"name"</span>      <span class="o">:</span> <span class="p">{</span> <span class="nx">first</span><span class="o">:</span><span class="s2">"Apple"</span><span class="p">,</span> <span class="nx">last</span><span class="o">:</span><span class="s2">"MacBook"</span> <span class="p">},</span>
+                <span class="s2">"address"</span>   <span class="o">:</span> <span class="p">{</span> <span class="nx">country</span><span class="o">:</span><span class="s2">"U.S"</span><span class="p">,</span> <span class="nx">city</span><span class="o">:</span><span class="s2">"N/A"</span> <span class="p">},</span>
+                <span class="s2">"email"</span>     <span class="o">:</span> <span class="s2">"apple@apple.com"</span> <span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">union</span>   <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">union</span><span class="p">(</span><span class="nx">person1</span><span class="p">,</span> <span class="nx">person2</span><span class="p">);</span>
+
+<span class="c1">// results var union</span>
+<span class="nx">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span>  <span class="p">{</span> <span class="s2">"name"</span>      <span class="o">:</span> <span class="p">{</span> <span class="nx">first</span><span class="o">:</span><span class="s2">"Junil"</span><span class="p">,</span> <span class="nx">last</span><span class="o">:</span><span class="s2">"Um"</span> <span class="p">},</span>
+              <span class="s2">"address"</span>   <span class="o">:</span> <span class="p">{</span> <span class="nx">country</span><span class="o">:</span><span class="s2">"South Korea"</span><span class="p">,</span> <span class="nx">city</span><span class="o">:</span><span class="s2">"Seoul"</span> <span class="p">},</span>
+              <span class="s2">"email"</span>     <span class="o">:</span> <span class="s2">"powerumc at gmail"</span> <span class="p">}</span>
+<span class="nx">array</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span>  <span class="p">{</span> <span class="s2">"name"</span>      <span class="o">:</span> <span class="p">{</span> <span class="nx">first</span><span class="o">:</span><span class="s2">"Apple"</span><span class="p">,</span> <span class="nx">last</span><span class="o">:</span><span class="s2">"MacBook"</span> <span class="p">},</span>
+              <span class="s2">"address"</span>   <span class="o">:</span> <span class="p">{</span> <span class="nx">country</span><span class="o">:</span><span class="s2">"U.S"</span><span class="p">,</span> <span class="nx">city</span><span class="o">:</span><span class="s2">"N/A"</span> <span class="p">},</span>
+              <span class="s2">"email"</span>     <span class="o">:</span> <span class="s2">"apple@apple.com"</span> <span class="p">}</span>
+</pre></div>
+
 <h1>
 <a name="complex-examples" class="anchor" href="#complex-examples"><span class="octicon octicon-link"></span></a>Complex Examples</h1>
 
@@ -342,6 +424,16 @@ foreach break i = 0   key = powerumc
       </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+		          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-41779258-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
